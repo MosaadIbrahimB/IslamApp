@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:islam_app/model/theme_model.dart';
+import 'package:islam_app/screen/home_screen_islam_app.dart';
 
 void main(){
   runApp(IslamApp());
@@ -14,14 +16,10 @@ class IslamApp extends StatelessWidget {
         HomeScreenIslamApp.routeName:(_)=>HomeScreenIslamApp(),
       } ,
       initialRoute: HomeScreenIslamApp.routeName,
+
+    theme:MyTheme.theme_light ,
     );
   }
 }
-class HomeScreenIslamApp extends StatelessWidget {
-static const String routeName='HomeScreenIslamApp';
-  @override
-  Widget build(BuildContext context) {
-    return  Scaffold();
-  }
-}
+
 
