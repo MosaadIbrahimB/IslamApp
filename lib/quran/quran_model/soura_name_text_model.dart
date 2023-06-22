@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:islam_app/model/quran/soura_details_model.dart';
-import 'package:islam_app/screen/quran/sura_details_screen.dart';
+import 'package:islam_app/model/theme_model.dart';
+import 'package:islam_app/provider/app_config_provider.dart';
+import 'package:islam_app/quran/quran_model/soura_details_model.dart';
+import 'package:provider/provider.dart';
+
+import '../quran_screen/sura_details_screen.dart';
 
 class TextSouraNameModel extends StatelessWidget {
   String name;
@@ -8,6 +12,7 @@ class TextSouraNameModel extends StatelessWidget {
   TextSouraNameModel({required this.name,required this.numberSoura});
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<AppConfigProvider>(context);
     return InkWell(
       onTap: (){
 Navigator.of(context).pushNamed(SouraDetails.routeName,
@@ -16,7 +21,10 @@ Navigator.of(context).pushNamed(SouraDetails.routeName,
       },
       child: Text(
         name,
-        style: Theme.of(context).textTheme.titleMedium,
+
+        style: provider.isThemeModeDark()?
+          MyTheme.darkTheme.textTheme.titleMedium:
+        Theme.of(context).textTheme.titleMedium,
         textAlign: TextAlign.center,
       ),
     );
