@@ -6,9 +6,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islam_app/quran/quran_screen/sura_details_screen.dart';
 import 'package:provider/provider.dart';
 import 'hadeth/hadeth_screen/hadeth_details_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+void main()  async{
 
-void main() {
   runApp(
+
     MultiProvider(
       providers: [
         ChangeNotifierProvider<AppConfigProvider>(
@@ -37,8 +39,10 @@ class IslamApp extends StatelessWidget {
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: provider.appthemeMode,
+
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+
       locale: Locale(provider.appLanguage),
     );
   }
