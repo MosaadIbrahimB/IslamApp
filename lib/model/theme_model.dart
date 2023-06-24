@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 class MyTheme {
 
   static Color lightPrimary = const Color(0xffB7935F);
   static Color colorBlack = const Color(0xff242424);
   static Color colorWhite = const Color(0xffF8F8F8);
   static Color colorWhiteTransparant = const Color.fromRGBO(255, 255, 255, .8);
- // dark var theme
+
+
+  // -------dark var theme--------------------------
   static Color darkPrimary = const Color(0xff141A2E);
   static Color yellow  = const Color(0xffFACC1D);
+
+
+  // ++++++++++++++++++++lightTheme--------------------------++++++++++++++
 
   static ThemeData lightTheme = ThemeData(
     primaryColor: lightPrimary,
@@ -22,11 +27,13 @@ class MyTheme {
       elevation: 0,
     ),
     textTheme: TextTheme(
-      displayLarge: TextStyle(
-        color: colorBlack,
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
-      ),
+      displayLarge:GoogleFonts.elMessiri(
+          color: colorBlack,
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+      )
+
+        ,
       displayMedium: TextStyle(
           fontSize: 24, fontWeight: FontWeight.w400, color: colorBlack),
       titleMedium: TextStyle(
@@ -46,6 +53,8 @@ class MyTheme {
         fontWeight: FontWeight.bold,
         color: lightPrimary,
       ),
+
+
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -62,7 +71,7 @@ class MyTheme {
     ),
   );
 
-//dark Theme
+//++++++++++++++++++++++++dark Theme-----------------------------------+++++++++++
   static ThemeData darkTheme = ThemeData(
     primaryColor: darkPrimary,
     scaffoldBackgroundColor: Colors.transparent,
@@ -100,6 +109,7 @@ class MyTheme {
         color: lightPrimary,
       ),
     ),
+
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: yellow,

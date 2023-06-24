@@ -65,7 +65,7 @@ class _HomeScreenIslamAppState extends State<HomeScreenIslamApp> {
                   ),
                   BottomNavigationBarItem(
                       icon:const ImageIcon(
-                          AssetImage("assets/images/head_sebha_logo.png")),
+                          AssetImage("assets/images/icon_sebha.png")),
                       label: AppLocalizations.of(context)!.sebaha),
                   BottomNavigationBarItem(
                       icon:const
