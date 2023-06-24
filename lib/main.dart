@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:islam_app/cash/shared_pref.dart';
+import 'package:islam_app/hadeth/hadeth_screen/hadeth_details_screen.dart';
 import 'package:islam_app/model/theme_model.dart';
 import 'package:islam_app/home_screen_islam_app.dart';
 import 'package:islam_app/provider/app_config_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islam_app/quran/quran_screen/sura_details_screen.dart';
 import 'package:provider/provider.dart';
-import 'hadeth/hadeth_screen/hadeth_details_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 void main()  async{
-
+  WidgetsFlutterBinding.ensureInitialized();
+  SharePref.pref=await SharedPreferences.getInstance();
   runApp(
-
     MultiProvider(
       providers: [
         ChangeNotifierProvider<AppConfigProvider>(

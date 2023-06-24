@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:islam_app/cash/shared_pref.dart';
 
 class AppConfigProvider extends ChangeNotifier {
   String appLanguage = 'en';
@@ -10,7 +10,6 @@ class AppConfigProvider extends ChangeNotifier {
   }
 
   void init() {
-    //print('INIT');
     getLocalFromPrefs();
     getModeFromPrefs();
   }
@@ -21,8 +20,7 @@ class AppConfigProvider extends ChangeNotifier {
       return;
     }
     appLanguage = newLanguage;
-    updateLanguage(newLanguage);
-
+    SharePref.setlanguage(appLanguage);
     notifyListeners();
   }
 
@@ -32,46 +30,37 @@ class AppConfigProvider extends ChangeNotifier {
 
   //theme
   void changeTheme(ThemeMode newThemeMode) {
-    if (newThemeMode == appthemeMode) {
+    if (appthemeMode==newThemeMode ) {
+
       return;
+    }else {
+      appthemeMode = newThemeMode;
+      if (appthemeMode == ThemeMode.dark)
+      {SharePref.setTheme('dark');}
+      else{SharePref.setTheme('light');}
+      notifyListeners();
+
     }
-    appthemeMode = newThemeMode;
-    updateTheme(appthemeMode);
+
+
+
     notifyListeners();
   }
 
-  void updateLanguage(String appLanguage) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('language', appLanguage);
-  }
-
-  void updateTheme(ThemeMode newTheme) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    newTheme == ThemeMode.dark
-        ? await prefs.setBool('themeMode', true)
-        : await prefs.setBool('themeMode', false);
-  }
-
+//init local
   void getLocalFromPrefs() {
-    SharedPreferences.getInstance().then((value) {
-      appLanguage = value.getString('language') ?? 'ar';
-      notifyListeners();
-     // print(appLanguage);
-    });
+    appLanguage = SharePref.getLanguage();
+    notifyListeners();
   }
 
+//init theme
   void getModeFromPrefs() {
-    SharedPreferences.getInstance().then((value) {
-      bool dark = value.getBool('themeMode') ?? true;
-//      print(dark);
-
-      if (dark) {
-        appthemeMode = ThemeMode.dark;
-      } else {
-        appthemeMode = ThemeMode.light;
-      }
-      notifyListeners();
-    });
+    if (SharePref.getTheme() == 'dark') {
+      appthemeMode = ThemeMode.dark;
+    } else {
+      appthemeMode = ThemeMode.light;
+    }
+    notifyListeners();
   }
 
   bool isThemeModeDark() {
